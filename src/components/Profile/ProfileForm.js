@@ -1,8 +1,10 @@
 import { useRef,useContext } from 'react';
 import classes from './ProfileForm.module.css';
 import AuthContext from '../store/AuthContext';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 
 const ProfileForm = () => {
+  const history=useHistory();
   const AuthCtx=useContext(AuthContext);
   const passwordInputRef=useRef();
   const submitHandler=(event)=>{
@@ -20,8 +22,11 @@ const ProfileForm = () => {
         'Content-Type': 'application/json'
       }
     })
+    .then((res)=>{
+      history.replace('/');
+    })
 
-    
+
   }
   return (
     <form onSubmit={submitHandler} className={classes.form}>
