@@ -17,8 +17,6 @@ const MainNavigation = () => {
 
   const logoutHandler=()=>{
     authCtx.logout();
-    localStorage.removeItem('email');
-    localStorage.removeItem('id');
     history.replace('/auth');
   }
   return (

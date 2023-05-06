@@ -58,9 +58,8 @@ const AuthForm = () => {
       }
     })
     .then((data)=>{
-      AuthCtx.login();
-      localStorage.setItem('email',data.email);
-      localStorage.setItem('id', data.idToken);
+      AuthCtx.login(data.idToken);
+      console.log(data.idToken);
       history.replace('/');
     })
     .catch((err)=>{
