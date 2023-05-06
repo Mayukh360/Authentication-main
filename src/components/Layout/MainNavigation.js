@@ -11,8 +11,14 @@ const MainNavigation = () => {
 
   const isLoggedIn= authCtx.isLoggedIn;
 
+  // const temp=()=>{
+  //   console.log(isLoggedIn);
+  // }
+
   const logoutHandler=()=>{
     authCtx.logout();
+    localStorage.removeItem('email');
+    localStorage.removeItem('id');
     history.replace('/auth');
   }
   return (
@@ -34,6 +40,7 @@ const MainNavigation = () => {
           </li>}
         </ul>
       </nav>
+      {/* <button onClick={temp}>Login Check</button> */}
     </header>
   );
 };
