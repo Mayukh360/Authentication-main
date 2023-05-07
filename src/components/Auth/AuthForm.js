@@ -59,7 +59,8 @@ const AuthForm = () => {
     })
     .then((data)=>{
       AuthCtx.login(data.idToken);
-      console.log(data.idToken);
+      AuthCtx.autoLogout();
+      // console.log(data.idToken);
       history.replace('/');
     })
     .catch((err)=>{

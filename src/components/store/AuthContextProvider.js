@@ -1,9 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import AuthContext from './AuthContext';
 
 export default function AuthContextProvider(props)  {
-    const initialToken=localStorage.getItem('token');
+    let initialToken=localStorage.getItem('token');
     const [token,setToken]=useState(initialToken);
+
+    function autoLogoutHandler(){
+      setTimeout(()=>{
+        console.log('You have been logged out');
+        localStorage.removeItem('token');
+        initialToken=null;
+      },10000)
+    }
+    useEffect(()=>{
+      autoLogoutHandler();
+    },[])
 
     const userIsLoggedIn= !!token;
 
@@ -22,6 +33,7 @@ export default function AuthContextProvider(props)  {
         isLoggedIn : userIsLoggedIn,
         login : loginhandler,
         logout : logoutHandler,
+        autoLogout:autoLogoutHandler
     }
 
 
